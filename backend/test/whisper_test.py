@@ -45,8 +45,7 @@ def save_transcription(transcripts, output_file="full_transcription.txt"):
 #condenses all functions to a main public function that cli_chat calls
 def get_transcriptions(video_path, output_dir, model_size):
     audio_files = extract_chunks(video_path, output_dir)
-    transcripts = transcribe_chunks(audio_files, model_size)
-    return save_transcription(transcripts)
+    return transcribe_chunks(audio_files, model_size)
 
 # --- Example usage ---
 #video_path = "test_data/boulder_police_harassment.mp4"
