@@ -42,10 +42,15 @@ def save_transcription(transcripts, output_file="full_transcription.txt"):
             f.write(f"\n=== {audio_path} ===\n{text}\n")
     print(f"Transcription saved to {output_file}")
 
-# --- Example usage ---
-video_path = "test_data/boulder_police_harassment.mp4"
-output_dir = "audio_chunks"
+#condenses all functions to a main public function that cli_chat calls
+def get_transcriptions(video_path, output_dir, model_size):
+    audio_files = extract_chunks(video_path, output_dir)
+    transcripts = transcribe_chunks(audio_files, model_size)
+    return save_transcription(transcripts)
 
-audio_files = extract_chunks(video_path, output_dir)
-transcripts = transcribe_chunks(audio_files, model_size='base')
-save_transcription(transcripts)
+# --- Example usage ---
+#video_path = "test_data/boulder_police_harassment.mp4"
+#chunk_output_dir = "audio_chunks"
+#MODEL_SIZE = 'base'
+
+#get_transcriptions(video_path, chunk_output_dir, model_size)
