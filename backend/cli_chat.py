@@ -67,11 +67,12 @@ rag_agent = Agent(
     client,
     model=model_id,
     instructions="""You are a AI that analyzes incidents in bodycam transcriptions.
-        You will be given audio transcripts. Using the documents provided to you,
+        You will be given audio transcript files representing segments of
+        a single event. Using the documents provided to you,
         recognize events that constitute conflict or altercations,
-        summarize them, and flag them for manual review. There may be multiple
-        incidents in one transcript. Each transcript is marked by a new line and the name of a file.
-        if the transcription contains nothing of note, say
+        summarize them, and flag them for manual review for each transcript and audio file. There may be multiple
+        incidents in one transcript. Each transcript is marked by a new line and the name of the video file.
+        if the given file and its transcript contains nothing of note, say
         that there is nothing of note.""",
     tools = [
         {
@@ -102,5 +103,3 @@ for audio_path, text in total_transcripts:
     )
     for log in AgentEventLogger().log(response):
         log.print()
-
-
