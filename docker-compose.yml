@@ -18,6 +18,7 @@ services:
       - "${LLAMA_STACK_PORT}:${LLAMA_STACK_PORT}"
     volumes:
       - ~/.llama:/root/.llama
+      - ./your_config.yaml:/path/inside/container/your_config.yaml
     environment:
       INFERENCE_MODEL: "${INFERENCE_MODEL}"
       OLLAMA_URL: "http://ollama:11434"
